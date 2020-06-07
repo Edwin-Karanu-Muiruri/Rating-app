@@ -12,3 +12,14 @@ class Profile(models.Model):
     profile_pic = CloudinaryField('image')
     bio = models.CharField(max_length = 255)
     email = models.EmailField( default = None)
+
+class Project(models.Model):
+    '''
+    Projects class to define the project outlook
+    '''
+    profile = models.ForeignKey(Profile,on_delete = models.CASCADE)
+    project_name = models.CharField(max_length = 100)
+    project_screenshot = CloudinaryField('image')
+    project_description = models.TextField()
+    project_url = models.CharField(max_length = 300)
+    
