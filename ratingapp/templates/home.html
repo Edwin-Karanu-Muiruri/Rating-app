@@ -2,5 +2,27 @@
 {% load bootstrap4 %}
 
 {% block content %}
-<h1>home page</h1>
+<div class="container-fluid">
+    <div class="row">
+        <h4 class="text-center">Sites of the day</h4>
+        {% for project in projects %}
+        <div class="card col-md-10" style="margin-top: 20px; margin-bottom: 20px;">
+            <div class="card-header">
+                <h3 class="float: left">{{project.project_name}}</h3>
+            </div>
+            <div class="card-body">
+                <a href="{% %}"><img src="{{project.project_screenshot.url}}" width="80px" class="card-img-top" class="img-responsive" alt="img"></a>
+            </div>
+            <div class="card-body">
+                <p style="float: right;">{{project.project_description}}</p>
+                <p style="float: right;">View site here: {{project.project_url}}</p>
+            </div>
+            <div class="card-body">
+                <p style="float: right;">{{project.ratings}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <h4>Nominees</h4>
+</div>
 {% endblock %}
