@@ -1,0 +1,33 @@
+{% load bootstrap4 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+    <title>rating Up - {{title}} </title>
+    {% else %}
+    <title>rating Up</title>
+    {% endif %}
+
+    {% block styles %}
+        {% bootstrap_css %}
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+</head>
+<body>
+    {% include 'navbar.html' %}
+    {% block content %}
+    {% endblock %}
+    
+    <br>
+    <br>
+    <br>
+    <div class="footer">
+            <p class="text-center">About| Help| Jobs| Privacy| Terms| Language|</p>
+            <p class="text-center">© 2020 PHOTO BOOTH</p>
+    </div>
+</body>
+</html>
