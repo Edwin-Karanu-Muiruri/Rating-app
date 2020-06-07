@@ -22,4 +22,13 @@ class Project(models.Model):
     project_screenshot = CloudinaryField('image')
     project_description = models.TextField()
     project_url = models.CharField(max_length = 300)
-    
+
+class Rating(models.Model):
+    '''
+    Ratings class for rating of projects
+    '''
+    project = models.ForeignKey(Project,on_delete = models.CASCADE)
+    content_rating = models.IntegerField()
+    design_rating = models.IntegerField()
+    usability_rating = models.IntegerField()
+    overall_rating = models.IntegerField()
