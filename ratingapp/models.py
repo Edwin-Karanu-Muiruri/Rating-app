@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from cloudinary.models import CloudinaryField
+from django.db.models.signals import post_save
 
 # Create your models here.
 class Profile(models.Model):
@@ -13,6 +14,27 @@ class Profile(models.Model):
     bio = models.CharField(max_length = 255)
     email = models.EmailField( default = None)
 
+    def __str__(self):
+        return self.user.username 
+
+    @receiver(post_save, sender = User)
+    def create_profile(sender, instance,created, **kwargs):
+        if created:
+            Profile.objects.create(user = instance)
+
+    @receiver(post_save,sender = User)
+    def save_profile( sender, instance, **kwargs):
+        instance.profile.save()
+
+class Rating(models.Model):
+    '''
+    Ratings class for rating of projects
+    '''
+    content_rating = models.IntegerField()
+    design_rating = models.IntegerField()
+    usability_rating = models.IntegerField()
+    overall_rating = models.IntegerField()
+
 class Project(models.Model):
     '''
     Projects class to define the project outlook
@@ -22,13 +44,5 @@ class Project(models.Model):
     project_screenshot = CloudinaryField('image')
     project_description = models.TextField()
     project_url = models.CharField(max_length = 300)
+    ratings = models.ForeignKey(Rating,on_delete = models.CASCADE)
 
-class Rating(models.Model):
-    '''
-    Ratings class for rating of projects
-    '''
-    project = models.ForeignKey(Project,on_delete = models.CASCADE)
-    content_rating = models.IntegerField()
-    design_rating = models.IntegerField()
-    usability_rating = models.IntegerField()
-    overall_rating = models.IntegerField()
