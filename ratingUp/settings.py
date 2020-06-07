@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'ratingapp',
     'bootstrap4',
+    'django_registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
