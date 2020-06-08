@@ -12,7 +12,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User,on_delete = models.CASCADE)
     profile_pic = CloudinaryField('image')
     bio = models.CharField(max_length = 255)
-    email = models.EmailField( default = None)
+    email = models.EmailField()
 
     def __str__(self):
         return self.user.username 
@@ -39,10 +39,9 @@ class Project(models.Model):
     '''
     Projects class to define the project outlook
     '''
-    profile = models.ForeignKey(Profile,on_delete = models.CASCADE)
+    profile = models.ForeignKey(User,on_delete = models.CASCADE)
     project_name = models.CharField(max_length = 100)
     project_screenshot = CloudinaryField('image')
     project_description = models.TextField()
     project_url = models.CharField(max_length = 300)
-    ratings = models.ForeignKey(Rating,on_delete = models.CASCADE)
 
