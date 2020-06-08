@@ -11,8 +11,7 @@ from .serializer import ProfileSerializer,ProjectSerializer
 def home(request):
     projects = Project.display_all_projects()
     project_ratings = Project.objects.all().order_by('-average_rating')
-    highest_rating = project_ratings[0]
-    return render(request,'home.html',{"projects":projects,"highest_rating":highest_rating})
+    return render(request,'home.html',{"projects":projects})
 
 def project(request):
     project = Project.objects.get(pk=id)
