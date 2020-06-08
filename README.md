@@ -1,4 +1,4 @@
-# Photo Booth
+# Rating Up
 
 ## Author
 Edwin Karanu Muiruri
