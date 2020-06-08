@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <h3 class="text-center">My profile</h3>
+            <img src="{{profile.profile_pic}}" class="img-thumbnail" alt="profile picture">
+            <h4>{{profile.user}}</h4>
+            <p>{{profile.email}}</p>
+            <p>{{profile.bio}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <h3 class="text-center">My projects</h3>
+        {% for project in projects %}
+        <div class="card col-md-10" style="margin-top: 20px; margin-bottom: 20px;">
+            <div class="card-header">
+                <h3 class="float: left">{{project.project_name}}</h3>
+            </div>
+            <div class="card-body">
+                <a href=""><img src="{{project.project_screenshot.url}}" width="80px" class="card-img-top" class="img-responsive" alt="img"></a>
+            </div>
+            <div class="card-body">
+                <p style="float: right;">{{project.project_description}}</p>
+                <p style="float: right;">View site here: {{project.project_url}}</p>
+            </div>
+            <div class="card-body">
+                <p style="float: right;">{{project.ratings}}</p>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
