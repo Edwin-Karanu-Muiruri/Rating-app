@@ -3,8 +3,8 @@
 
 {% block content %}
 <div class="container-fluid">
+    <h4 class="text-center">Sites of the day</h4>
     <div class="row">
-        <h4 class="text-center">Sites of the day</h4>
         {% for project in projects %}
         <div class="card col-md-10" style="margin-top: 20px; margin-bottom: 20px;">
             <div class="card-header">
@@ -23,6 +23,6 @@
         </div>
         {% endfor %}
     </div>
-    <h4>Nominees</h4>
+    <h4 class="text-center">Nominees</h4>
 </div>
 {% endblock %}

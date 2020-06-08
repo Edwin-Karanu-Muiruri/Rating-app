@@ -9,7 +9,8 @@ from .serializer import ProfileSerializer,ProjectSerializer
 
 # Create your views here.
 def home(request):
-    return render(request,'home.html')
+    projects = Project.display_all_projects()
+    return render(request,'home.html',{"projects":projects})
 
 def project(request):
     return render(request,'project.html')
@@ -29,13 +30,13 @@ def post_project(request):
 def profile(request):
     return render(request,'profile.html')
 
-class ProfileSerializer(APIView):
+class ProfileList(APIView):
     def get(self,request,format = None):
         all_profiles = Profile.objects.all()
         serializers = ProfileSerializer(all_profiles,many = True)
         return Response(serializers.data)
-        
-class ProjectSerializer(APIView):
+
+class ProjectList(APIView):
     def get(self,request,format = None):
         all_projects = Project.objects.all()
         serializers = ProjectSerializer(all_projects,many = True)
