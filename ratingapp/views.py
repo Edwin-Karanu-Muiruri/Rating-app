@@ -39,8 +39,6 @@ def project_search(request):
         searched_project = request.GET.get("project")
         projects = Project.search_project(searched_project)
         message =f"{searched_project}"
-       
-        
         return render(request, 'search.html', {"projects": projects,"message": message})
     else:
         message = "Please enter a project name to search"
