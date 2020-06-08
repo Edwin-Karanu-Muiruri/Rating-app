@@ -14,15 +14,22 @@
                 <a href=""><img src="{{project.project_screenshot.url}}" width="80px" class="card-img-top" class="img-responsive" alt="img"></a>
             </div>
             <div class="card-body">
-                <p style="float: right;">{{project.project_description}}</p>
-                <p style="float: right;">View site here: {{project.project_url}}</p>
+                <p style="float: left;"><b>Description:</b> {{project.project_description}}</p>
+                <br>
+                <p style="float: left;"><b>View site here:</b> <a href="{{project.project_url}}">{{project.project_url}}</a></p>
             </div>
             <div class="card-body">
-                <p style="float: right;">{{project.ratings}}</p>
+                <p style="float: left;">Content: {{project.average_content_rating | floatformat:1}}/10 | Design: {{project.average_design_rating | floatformat:1}}/10 | Usability: {{project.average_usability_rating | floatformat:1}}/10 | Average rating: {{project.average_rating | floatformat:1}}/10</p>
+            </div>
+            <div class="card-body">
+                <a style="float: left" href="{% url 'project' project.id %}"> View project details</a>
             </div>
         </div>
         {% endfor %}
     </div>
     <h4 class="text-center">Nominees</h4>
+    <br>
+    <br>
+    <br>
 </div>
 {% endblock %}

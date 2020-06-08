@@ -37,6 +37,7 @@ class Project(models.Model):
     project_description = models.TextField()
     project_url = models.URLField()
     date_pub = models.DateTimeField(auto_now_add = True,null = True)
+    voters = models.ManyToManyField(User, related_name="votes")
     content_rating = models.IntegerField(default  =0)
     design_rating = models.IntegerField(default = 0)
     usability_rating = models.IntegerField(default= 0 )
