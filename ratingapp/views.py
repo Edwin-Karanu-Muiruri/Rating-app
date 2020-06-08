@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .forms import ProjectUploadForm
-from .models import Project,Profile,Rating
+from .models import Project,Profile
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from rest_framework.response import Response

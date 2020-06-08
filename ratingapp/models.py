@@ -26,14 +26,6 @@ class Profile(models.Model):
     def save_profile( sender, instance, **kwargs):
         instance.profile.save()
 
-class Rating(models.Model):
-    '''
-    Ratings class for rating of projects
-    '''
-    content_rating = models.IntegerField()
-    design_rating = models.IntegerField()
-    usability_rating = models.IntegerField()
-    overall_rating = models.IntegerField()
 
 class Project(models.Model):
     '''
@@ -43,7 +35,18 @@ class Project(models.Model):
     project_name = models.CharField(max_length = 100)
     project_screenshot = CloudinaryField('image')
     project_description = models.TextField()
-    project_url = models.CharField(max_length = 300)
+    project_url = models.URLField()
+    date_pub = models.DateTimeField(auto_now_add = True,null = True)
+    content_rating = models.IntegerField(default  =0)
+    design_rating = models.IntegerField(default = 0)
+    usability_rating = models.IntegerField(default= 0 )
+
+    average_content_rating = models.FloatField(default=0)
+    average_design_rating = models.FloatField(default=0,)
+    average_usability_rating = models.FloatField(default=0)
+    average_rating = models.FloatField(default=0)
+
+
 
     def __str__(self):
         return self.title
@@ -65,3 +68,6 @@ class Project(models.Model):
     @classmethod
     def get_user_projects(cls,profile):
         return cls.objects.filter(profile=profile)
+
+    def voters_count(self):
+        return self.voters.count()
