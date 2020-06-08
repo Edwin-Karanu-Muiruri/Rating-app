@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Project
+from .models import Project,Profile
 from django import forms
 
 class ProjectUploadForm(ModelForm):
@@ -11,3 +11,8 @@ class RateProjectForm(forms.Form):
     content = forms.IntegerField(min_value = 1, max_value = 10)
     design = forms.IntegerField(min_value = 1, max_value = 10)
     usability = forms.IntegerField(min_value = 1, max_value = 10)
+
+class EditProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['user']
